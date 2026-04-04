@@ -1,0 +1,30 @@
+<!-- Data Binding -->
+
+<!-- <h1>{{message}}</h1>
+<br>
+<button (click)="toggleButton()">Toggle Button</button>
+<button [disabled]="isDisable" (click)="propertyBinding()" [class]="isDisable ? ' text-gray-300 ' : ' text-black ' ">Property Binding</button>
+<br>
+<input [(ngModel)]="message"/> -->
+
+<!-- Directives -->
+
+<h1 *ngIf="!isDisable">Hello, World!</h1>
+
+<h1 *ngFor="let user of users">{{ user.name }}</h1>
+
+<p [ngClass]="isOnline ? 'text-green-500' : 'text-red-500 '">Status Message</p>
+
+<p [ngClass]="{ 'text-red-500': age < 18, 'text-green-500': age >= 18 }">{{ age }}</p>
+
+<button
+  class="px-4 py-2 rounded"
+  [ngClass]="{
+    ' cursor-pointer bg-sky-400  text-white ': isActive,
+    ' cursor-not-allowed border text-gray-300 ': !isActive,
+  }"
+>
+  Add Image
+</button>
+
+<p [class.text-red-500]="age < 18" [class.text-green-500]="age >= 18">{{ age }}</p>

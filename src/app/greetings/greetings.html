@@ -1,0 +1,53 @@
+<section class="flex m-5 space-x-3">
+  <section class="w-1/2 border border-gray-300 rounded p-5 space-y-2">
+    <h1>New User! Create Profile</h1>
+    <div>
+      <h1>Name:</h1>
+      <input
+        [(ngModel)]="userName"
+        type="text"
+        class="border border-gray-300 rounded"
+        placeholder="Enter the User Name..."
+      />
+    </div>
+    <div>
+      <h1>Age:</h1>
+      <input
+        [(ngModel)]="userAge"
+        type="number"
+        class="border border-gray-300 rounded"
+        placeholder="Enter the User Age..."
+      />
+    </div>
+    <div class="flex">
+      <button
+        [disabled]="!userName || !userAge"
+        [class]="!userName || !userAge ? 'bg-gray-400 text-black/50 ' : 'bg-sky-400 text-white '"
+        class="px-3 py-1 rounded"
+        (click)="submitButton()"
+      >
+        Save Profile
+      </button>
+      <button class="px-3 py-1 rounded ml-3 border border-gray-300" (click)="resetButton()">
+        Reset
+      </button>
+    </div>
+  </section>
+  <section [hidden]="isDisable" class="w-1/2 border border-gray-300 rounded p-5">
+    Your Profile has been Created Successfully!
+    <div>
+      <h1>Name: {{ userName }}</h1>
+    </div>
+    <div>
+      <h1>
+        Age:
+        <span [class.text-red-500]="userAge !== null && userAge <= 18" class="text-green-500">{{
+          userAge
+        }}</span>
+      </h1>
+    </div>
+    <div class="w-full text-center">
+      <h1>Hi {{ userName }}, you are {{ userAge }} years old!</h1>
+    </div>
+  </section>
+</section>
