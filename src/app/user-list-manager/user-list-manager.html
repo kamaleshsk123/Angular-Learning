@@ -28,12 +28,13 @@
       <div *ngFor="let user of users; let i = index">
         <div class="space-y-3 w-full rounded border border-gray-200 p-3 mt-2">
           <h1>Name:{{ user.name }}</h1>
-          <h1>
+          <!-- <h1>
             Age:
             <span [ngClass]="(user.age ?? 0) < 18 ? 'text-red-500' : 'text-green-500'">{{
               user.age
             }}</span>
-          </h1>
+          </h1> -->
+          <h1>Address: {{user?.address?.zipcode}}</h1>
           <button class="bg-red-500 text-white px-4 py-2 rounded" (click)="deleteButton(i)">
             Delete {{ user.name }}
           </button>

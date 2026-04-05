@@ -12,10 +12,15 @@ import { User } from '../services/user';
 export class UserListManager {
   userName: string = '';
   userAge: number | null = null;
-  users: { name: string; age: number | null }[];
+  users: any;
+  // users: { name: string; age: number | null }[];
 
   constructor(private user: User) {
-    this.users = this.user.showUser();
+    // this.users = this.user.showUser();
+    //Api Tryout
+    this.user.getUserFromApi().subscribe((data: any) => {
+      this.users = data;
+    });
   }
   submitButton() {
     console.log(this.user.showUser());
