@@ -4,15 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class User {
-  users: {name: string, age:number}[]= []
-
-  addUser(users:{name:string, age:number}){
-    this.users.push(users)
+  users: { name: string; age: number | null }[] = [];
+  addUser(users: { name: string; age: number | null }) {
+    this.users.push(users);
   }
-  deleteUser(index: number){
-    this.users.splice(index)
+  deleteUser(index: number) {
+    this.users.splice(index, 1);
   }
-  showuser(){
-    return this.users
+  showUser() {
+    return this.users;
   }
 }

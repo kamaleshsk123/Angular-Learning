@@ -5,39 +5,34 @@ import { User } from '../services/user';
 
 @Component({
   selector: 'app-user-list-manager',
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './user-list-manager.html',
   styleUrl: './user-list-manager.css',
 })
 export class UserListManager {
   userName: string = '';
   userAge: number | null = null;
-  users: { name: string; age: number }[] = [];
+  users: { name: string; age: number | null }[];
 
   constructor(private user: User) {
-    this.users = this.user.showuser();
+    this.users = this.user.showUser();
   }
   submitButton() {
-    // if (this.userName && this.userAge) {
-    //   this.users.push({
-    //     name: this.userName,
-    //     age: this.userAge,
-    //   });
-    // }
-    if (this.userName && this.userAge) {
+    console.log(this.user.showUser());
+    if (this.userName || this.userAge) {
       this.user.addUser({
         name: this.userName,
         age: this.userAge,
       });
     }
-    console.log('Show User:', this.user.showuser());
     this.resetButton();
-  }
-  deleteButton(index: number) {
-    this.user.deleteUser(index);
   }
   resetButton() {
     this.userName = '';
     this.userAge = null;
+  }
+  deleteButton(index: number) {
+    console.log('Delete Button Clicked');
+    this.user.deleteUser(index);
   }
 }

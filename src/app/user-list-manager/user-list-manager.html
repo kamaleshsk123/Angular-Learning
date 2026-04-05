@@ -1,55 +1,43 @@
-<section class="w-full p-5 flex space-x-2">
-  <section class="border border-gray-300 space-y-2 rounded p-5 w-1/2">
-    <h1>Create New Profile</h1>
+<section class="flex w-full space-x-3 p-5">
+  <section class="w-1/2 border border-gray-400 space-y-3 rounded p-5">
+    Create New Account!
     <div>
       <h1>Name:</h1>
-      <input [(ngModel)]="userName" type="text" class="border border-gray-400 rounded" />
+      <input [(ngModel)]="userName" type="text" class="border border-gray-300 rounded" />
     </div>
     <div>
       <h1>Age:</h1>
-      <input [(ngModel)]="userAge" type="number" class="border border-gray-400 rounded" />
+      <input [(ngModel)]="userAge" type="number" class="border border-gray-300 rounded" />
     </div>
-    <div class="space-x-2">
+    <div class="space-x-3">
       <button
-        [disabled]="!userName || !userAge"
-        [ngClass]="!userName || !userAge ? 'border' : 'text-white bg-sky-400'"
-        class="px-4 py-2 rounded"
+        [ngClass]="!userName || !userAge ? 'border' : 'bg-sky-400 text-white'"
+        class="px-3 py-2 rounded"
         (click)="submitButton()"
       >
         Submit
       </button>
-      <button class="border px-4 py-2 rounded" (click)="resetButton()">Reset</button>
+      <button class="px-3 py-2 rounded border" (click)="resetButton()">Reset</button>
     </div>
   </section>
-  <section class="border border-gray-300 rounded p-5 w-1/2">
-    <div *ngIf="users.length === 0" class="h-40 flex justify-center items-center">
-      <h1 class="text-gray-400">No data available</h1>
+  <section class="w-1/2 border border-gray-400 space-y-3 rounded p-5">
+    <div *ngIf="users.length === 0">
+      <h1 class="flex justify-center items-center text-gray-400 h-48">No Data Available</h1>
     </div>
     <div *ngIf="users.length > 0">
-      <h1>Profile List</h1>
-      <div
-        *ngFor="let items of users; let i = index"
-        class="border border-gray-300 w-full rounded p-3 mt-3"
-      >
-        <h1>
-          Name: <span>{{ items.name }}</span>
-        </h1>
-        <h1>
-          Age:
-          <span [ngClass]="items.age < 18 ? 'text-red-500' : 'text-green-500'">{{
-            items.age
-          }}</span>
-        </h1>
-        <h1>
-          Hi, {{ items.name }}, You are
-          <span [ngClass]="items.age < 18 ? 'text-red-500' : 'text-green-500'">{{
-            items.age
-          }}</span>
-          years old.
-        </h1>
-        <button class="bg-red-500 text-white px-4 py-2 rounded" (click)="deleteButton(i)">
-          Delete {{ items.name }}
-        </button>
+      <div *ngFor="let user of users; let i = index">
+        <div class="space-y-3 w-full rounded border border-gray-200 p-3 mt-2">
+          <h1>Name:{{ user.name }}</h1>
+          <h1>
+            Age:
+            <span [ngClass]="(user.age ?? 0) < 18 ? 'text-red-500' : 'text-green-500'">{{
+              user.age
+            }}</span>
+          </h1>
+          <button class="bg-red-500 text-white px-4 py-2 rounded" (click)="deleteButton(i)">
+            Delete {{ user.name }}
+          </button>
+        </div>
       </div>
     </div>
   </section>
