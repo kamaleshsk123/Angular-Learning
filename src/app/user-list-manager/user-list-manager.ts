@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { User } from '../services/user';
 
 @Component({
   selector: 'app-user-list-manager',
@@ -12,22 +13,31 @@ export class UserListManager {
   userName: string = '';
   userAge: number | null = null;
   users: { name: string; age: number }[] = [];
-  submitButton() {
-    console.log('Submit Button Clicked');
 
-    if (this.userAge && this.userName) {
-      this.users.push({
+  constructor(private user: User) {
+    this.users = this.user.showuser();
+  }
+  submitButton() {
+    // if (this.userName && this.userAge) {
+    //   this.users.push({
+    //     name: this.userName,
+    //     age: this.userAge,
+    //   });
+    // }
+    if (this.userName && this.userAge) {
+      this.user.addUser({
         name: this.userName,
         age: this.userAge,
       });
     }
-    console.log(this.users);
+    console.log('Show User:', this.user.showuser());
+    this.resetButton();
+  }
+  deleteButton(index: number) {
+    this.user.deleteUser(index);
   }
   resetButton() {
     this.userName = '';
     this.userAge = null;
-  }
-  deleteUser(index: number) {
-    this.users.splice(index, 1);
   }
 }

@@ -1,63 +1,54 @@
-<section class="w-full m-5 flex space-x-5">
-  <section class="border w-1/2 border-gray-400 rounded p-5">
-    Create New User
+<section class="w-full p-5 flex space-x-2">
+  <section class="border border-gray-300 space-y-2 rounded p-5 w-1/2">
+    <h1>Create New Profile</h1>
     <div>
       <h1>Name:</h1>
-      <input [(ngModel)]="userName" class="border rounded border-gray-400" type="text" />
+      <input [(ngModel)]="userName" type="text" class="border border-gray-400 rounded" />
     </div>
     <div>
       <h1>Age:</h1>
-      <input [(ngModel)]="userAge" class="border rounded border-gray-400" type="number" />
+      <input [(ngModel)]="userAge" type="number" class="border border-gray-400 rounded" />
     </div>
-    <div class="flex space-x-3">
+    <div class="space-x-2">
       <button
-        [disabled]="!this.userName || !this.userAge"
-        [ngClass]="
-          !this.userName || !this.userAge ? 'border text-slate-400' : 'text-white bg-sky-400'
-        "
-        class="px-4 py-2 mt-3 rounded"
+        [disabled]="!userName || !userAge"
+        [ngClass]="!userName || !userAge ? 'border' : 'text-white bg-sky-400'"
+        class="px-4 py-2 rounded"
         (click)="submitButton()"
       >
-        Save Button
+        Submit
       </button>
-      <button class="px-4 py-2 mt-3 rounded border text-black" (click)="resetButton()">
-        Reset Button
-      </button>
+      <button class="border px-4 py-2 rounded" (click)="resetButton()">Reset</button>
     </div>
   </section>
-  <section class="border w-1/2 border-gray-400 rounded p-5">
-    <div
-      *ngIf="users.length === 0"
-      class="flex justify-center items-center content-center h-40 text-gray-400"
-    >
-      No Data Available
+  <section class="border border-gray-300 rounded p-5 w-1/2">
+    <div *ngIf="users.length === 0" class="h-40 flex justify-center items-center">
+      <h1 class="text-gray-400">No data available</h1>
     </div>
     <div *ngIf="users.length > 0">
-      <div *ngFor="let item of users; let i = index">
-        <div>
-          <h1>
-            Name: <span>{{ item.name }}</span>
-          </h1>
-        </div>
-        <div>
-          <h1>
-            Age:
-            <span [ngClass]="item.age < 18 ? 'text-red-500' : 'text-green-500'">{{
-              item.age
-            }}</span>
-          </h1>
-        </div>
-        <div>
-          <h1>
-            Hi, {{ item.name }}, You are
-            <span [ngClass]="item.age < 18 ? 'text-red-500' : 'text-green-500'">{{
-              item.age
-            }}</span>
-            years old!
-          </h1>
-        </div>
-        <button class="bg-red-500 px-4 py-2 text-white rounded" (click)="deleteUser(i)">
-          Delete {{ item.name }}
+      <h1>Profile List</h1>
+      <div
+        *ngFor="let items of users; let i = index"
+        class="border border-gray-300 w-full rounded p-3 mt-3"
+      >
+        <h1>
+          Name: <span>{{ items.name }}</span>
+        </h1>
+        <h1>
+          Age:
+          <span [ngClass]="items.age < 18 ? 'text-red-500' : 'text-green-500'">{{
+            items.age
+          }}</span>
+        </h1>
+        <h1>
+          Hi, {{ items.name }}, You are
+          <span [ngClass]="items.age < 18 ? 'text-red-500' : 'text-green-500'">{{
+            items.age
+          }}</span>
+          years old.
+        </h1>
+        <button class="bg-red-500 text-white px-4 py-2 rounded" (click)="deleteButton(i)">
+          Delete {{ items.name }}
         </button>
       </div>
     </div>
