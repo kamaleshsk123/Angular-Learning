@@ -1,0 +1,13 @@
+<section class="h-screen">
+  <div *ngIf="isLoading" class="flex justify-center items-center">Loading...</div>
+  <div *ngIf="isError" class="flex flex-col justify-center items-center">
+    <h1>Error Loading Application...</h1>
+    <button class="bg-red-500 text-white px-4 py-2 mt-3 rounded">Retry</button>
+  </div>
+  <div *ngIf="!isLoading && !isError">
+    <div *ngFor="let user of users">
+      <h1>Name: {{ user.name }}</h1>
+      <p class="text-sm text-gray-400">Email: {{ user.email }}</p>
+    </div>
+  </div>
+</section>

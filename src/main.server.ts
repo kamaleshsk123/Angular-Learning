@@ -3,8 +3,9 @@ import { App } from './app/app';
 import { config } from './app/app.config.server';
 import { Greetings } from './app/greetings/greetings';
 import { UserListManager } from './app/user-list-manager/user-list-manager';
+import { ApiIntegration } from './app/api-integration/api-integration';
 
 const bootstrap = (context: BootstrapContext) =>
-  bootstrapApplication(UserListManager, config, context);
+  bootstrapApplication(ApiIntegration, config, context);
 
 export default bootstrap;
