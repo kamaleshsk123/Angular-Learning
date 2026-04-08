@@ -8,6 +8,15 @@
     <div *ngFor="let user of users">
       <h1>Name: {{ user.name }}</h1>
       <p class="text-sm text-gray-400">Email: {{ user.email }}</p>
+      <div>
+        <button
+          class="bg-sky-400 text-white px-4 py-2 rounded"
+          [routerLink]="['/user-details', user.id]"
+          (click)="detailsButton(user.id)"
+        >
+          View Full Details
+      </button>
+      </div>
     </div>
   </div>
 </section>

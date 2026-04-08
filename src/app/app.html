@@ -9,7 +9,7 @@
 
 <!-- Directives -->
 
-<h1 *ngIf="!isDisable">Hello, World!</h1>
+<!-- <h1 *ngIf="!isDisable">Hello, World!</h1>
 
 <h1 *ngFor="let user of users">{{ user.name }}</h1>
 
@@ -27,4 +27,11 @@
   Add Image
 </button>
 
-<p [class.text-red-500]="age < 18" [class.text-green-500]="age >= 18">{{ age }}</p>
+<p [class.text-red-500]="age < 18" [class.text-green-500]="age >= 18">{{ age }}</p> -->
+
+<nav class="space-x-4 p-4 border">
+  <a routerLink="/">Home</a>
+  <a routerLink="/users">Users</a>
+</nav>
+
+<router-outlet></router-outlet>
