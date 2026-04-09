@@ -1,0 +1,71 @@
+<!-- Tryout Reactive Forms -->
+<!-- <form [formGroup]="userDetails" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="name" placeholder="Enter Name" />
+  <input type="number" formControlName="age" placeholder="Enter Age" />
+  <button type="submit">Submit</button>
+  <div *ngIf="userDetails.get('name')?.touched && userDetails.get('name')?.invalid">
+    Name Field is required
+  </div>
+  <div *ngIf="userDetails.get('age')?.errors?.['min']">Age is must greater then 1</div>
+</form> -->
+
+<section class="h-screen bg-slate-100 flex justify-center items-center">
+  <form
+    [formGroup]="userInfo"
+    (ngSubmit)="onSubmit()"
+    class="border rounded bg-white border-gray-300 space-y-3 p-4"
+  >
+    <h1 class="text-2xl font-bold">Register New User!</h1>
+    <div>
+      <h1>Name:</h1>
+      <input
+        type="text"
+        formControlName="name"
+        placeholder="Enter the name"
+        class="border-gray-300 border pl-2 rounded"
+      />
+      <div *ngIf="userInfo.get('name')?.touched && userInfo.get('name')?.invalid">
+        Name field is required
+      </div>
+    </div>
+    <div>
+      <h1>Age:</h1>
+      <input
+        type="number"
+        formControlName="age"
+        placeholder="Enter the age"
+        class="border-gray-300 border pl-2 rounded"
+      />
+      <div *ngIf="userInfo.get('age')?.touched && userInfo.get('age')?.invalid">
+        <span *ngIf="userInfo.get('age')?.errors?.['required']">Email Field is Required</span>
+        <span *ngIf="userInfo.get('age')?.errors?.['min']">Email must be greater than 18</span>
+      </div>
+    </div>
+    <div>
+      <h1>Email:</h1>
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Enter the email"
+        class="border-gray-300 border pl-2 rounded"
+      />
+      <div *ngIf="userInfo.get('email')?.touched && userInfo.get('email')?.invalid">
+        <span *ngIf="userInfo.get('email')?.errors?.['required']">Email Field is required</span>
+        <span *ngIf="userInfo.get('email')?.errors?.['email']"
+          >Email Field looks like(eg: ...@gmail.com)</span
+        >
+      </div>
+    </div>
+    <div class="flex space-x-3">
+      <button
+        type="submit"
+        [disabled]="userInfo.invalid"
+        [ngClass]="userInfo.invalid ? 'border border-gray-200' : 'bg-sky-400 text-white '"
+        class="px-4 py-2 rounded"
+      >
+        Submit
+      </button>
+      <button type="reset" class="px-4 py-2 rounded border-gray-200 border">Reset</button>
+    </div>
+  </form>
+</section>
