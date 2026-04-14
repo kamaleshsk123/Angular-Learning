@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../services/user';
 
@@ -9,10 +9,10 @@ import { User } from '../services/user';
   templateUrl: './user-list-manager.html',
   styleUrl: './user-list-manager.css',
 })
-export class UserListManager {
+export class UserListManager implements OnInit {
   userName: string = '';
   userAge: number | null = null;
-  users: { name: string; age: number | null }[];
+  users: any[] = [];
 
   constructor(private user: User) {
     this.users = this.user.showUser();
@@ -21,12 +21,15 @@ export class UserListManager {
     });
     console.log(this.users);
   }
+  ngOnInit() {
+    console.log('User List Page Works Corectly');
+  }
   submitButton() {
     console.log(this.user.showUser());
     if (this.userName || this.userAge) {
       this.user.addUser({
-        name: this.userName,
-        age: this.userAge,
+        name: this.userName ?? '',
+        age: this.userAge ?? null,
       });
     }
     this.resetButton();

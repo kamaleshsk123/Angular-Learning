@@ -14,6 +14,9 @@ export class UserDetails {
   constructor(private user: User) {
     this.loadUserData();
   }
+  ngOnInit() {
+    console.log('Single User Page Works');
+  }
 
   loadUserData() {
     const id = this.user.userId;
