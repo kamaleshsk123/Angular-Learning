@@ -1,1 +1,103 @@
-<p>registration works!</p>
+<form [formGroup]="userInfo" (ngSubmit)="onSubmit()" class="m-3 space-y-3">
+  <div>
+    <h1>Name:</h1>
+    <input
+      type="text"
+      formControlName="name"
+      class="border pl-2 rounded"
+      placeholder="Enter the Name"
+    />
+    <div *ngIf="userInfo.get('name')?.touched && userInfo.get('name')?.invalid">
+      <div *ngIf="userInfo.get('name')?.errors?.['required']" class="text-red-500">
+        Name Field is required
+      </div>
+      <div *ngIf="userInfo.get('name')?.errors?.['minlength']" class="text-red-500">
+        Name is less then 3 characters
+      </div>
+    </div>
+  </div>
+  <div>
+    <h1>Age:</h1>
+    <input
+      type="number"
+      formControlName="age"
+      class="border pl-2 rounded"
+      placeholder="Enter the Age"
+    />
+    <div *ngIf="userInfo.get('age')?.touched && userInfo.get('age')?.invalid">
+      <div *ngIf="userInfo.get('age')?.errors?.['required']" class="text-red-500">
+        Age Field is required
+      </div>
+      <div *ngIf="userInfo.get('age')?.errors?.['min']" class="text-red-500">
+        Age is less the 18
+      </div>
+    </div>
+  </div>
+  <div>
+    <h1>Email:</h1>
+    <input
+      type="email"
+      formControlName="email"
+      class="border pl-2 rounded"
+      placeholder="Enter the Email"
+    />
+    <div *ngIf="userInfo.get('email')?.touched && userInfo.get('email')?.invalid">
+      <div *ngIf="userInfo.get('email')?.errors?.['required']" class="text-red-500">
+        Email Field is required
+      </div>
+      <div *ngIf="userInfo.get('email')?.errors?.['email']" class="text-red-500">
+        Email is not in the correct format
+      </div>
+    </div>
+  </div>
+  <div>
+    <button
+      [disabled]="userInfo.invalid"
+      [ngClass]="userInfo.invalid ? 'border ' : 'text-white bg-sky-400 cursor-pointer'"
+      type="submit"
+      (click)="onSubmit()"
+      class="px-4 py-2 rounded"
+    >
+      Register
+    </button>
+  </div>
+</form>
+
+<div *ngIf="userList.length > 0" class="w-1/2 overflow-x-auto">
+  <div class="flex w-auto m-2 justify-between">
+    <h1>Showing: {{ searchedUser.length }} of {{ userList.length }}</h1>
+    <div class="">
+      <input
+        type="search"
+        [(ngModel)]="searchTerm"
+        class="border rounded pl-2"
+        placeholder="Search by Names..."
+      />
+    </div>
+  </div>
+  <div class="border rounded m-2">
+    <table class="w-full text-left">
+      <thead class="bg-slate-200">
+        <tr>
+          <th class="p-2">Name</th>
+          <th class="p-2">Age</th>
+          <th class="p-2">Email</th>
+          <th class="p-2">Action</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let user of searchedUser; let i = index" class="border-b">
+        <tr>
+          <td class="p-2">{{ user.name }}</td>
+          <td class="p-2">{{ user.age }}</td>
+          <td class="p-2">{{ user.email }}</td>
+          <td class="p-2 text-red-500 cursor-pointer" (click)="deleteUser(i)">Delete</td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="searchedUser.length === 0">
+      <h1 class="flex items-center py-3 justify-center text-gray-400">
+        "No items in the Searched Name"
+      </h1>
+    </div>
+  </div>
+</div>
