@@ -6,6 +6,7 @@ import { authGuard } from './services/auth-guard/auth-guard';
 import { Registration } from './registration/registration';
 import { UserDashboard } from './user-dashboard/user-dashboard';
 import { EditUser } from './edit-user/edit-user';
+import { TaskManager } from './task-manager/task-manager';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -14,4 +15,5 @@ export const routes: Routes = [
   { path: 'registration', component: Registration },
   { path: 'dashboard', component: UserDashboard },
   { path: 'edit/:id', component: EditUser },
+  { path: 'task', component: TaskManager },
 ];
