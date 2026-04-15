@@ -1,18 +1,55 @@
-<div class="w-1/2 overflow-x-auto m-3">
-  <table class="border w-full">
-    <thead class="text-left border-b bg-gray-100">
-      <tr>
-        <th class="p-2">Name</th>
-        <th class="p-2">Email</th>
-        <th class="p-2">Phone</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="p-2">{{ userDetails.name }}</td>
-        <td class="p-2">{{ userDetails.email }}</td>
-        <td class="p-2">{{ userDetails.phone }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="m-3">
+  <h1 class="text-xl font-semibold">Edit User</h1>
+  <div *ngIf="userDetails; else noUser" class="w-1/2 overflow-x-auto">
+    <table class="border w-full text-left">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="p-2">Name</th>
+          <th class="p-2">Email</th>
+          <th class="p-2">Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-2">
+            <input
+              type="text"
+              [(ngModel)]="userDetails.name"
+              placeholder="Enter you Name..."
+              class="p-2 w-full rounded focus:border-blue-500"
+            />
+          </td>
+          <td class="p-2">
+            <input
+              type="email"
+              [(ngModel)]="userDetails.email"
+              placeholder="Enter you Email..."
+              class="w-full rounded p-2 focus:border-blue-500"
+            />
+          </td>
+          <td class="p-2">
+            <input
+              type="phoneNumber"
+              [(ngModel)]="userDetails.phone"
+              placeholder="Enter your Phonenumber..."
+              class="p-2 rounded w-full focus:border-blue-500"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="space-x-3 mt-3">
+      <button
+        class="px-4 py-2 bg-blue-500 text-white rounded"
+        routerLink="/dashboard"
+        (click)="saveUser()"
+      >
+        Save & Back to Dashboard
+      </button>
+      <button class="border rounded px-4 py-2" routerLink="/dashboard">Cancel</button>
+    </div>
+  </div>
+  <ng-template #noUser>
+    <div class="text-red-500 mt-3 bg-red-100 border border-red-200 p-3 rounded">No User Found</div>
+  </ng-template>
 </div>

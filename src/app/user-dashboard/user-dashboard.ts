@@ -11,13 +11,18 @@ import { User } from '../services/user';
 })
 export class UserDashboard {
   userList: any;
-  constructor(private userService: User) {
-    this.userService.getUserFromAPi().subscribe({
-      next: (data: any) => {
-        this.userList = data;
-        this.userService.setUser(this.userList);
-      },
-    });
+  constructor(private userService: User) {}
+  ngOnInit() {
+    this.userList = this.userService.showUser();
+
+    if (this.userList.length === 0) {
+      this.userService.getUserFromAPi().subscribe({
+        next: (data: any) => {
+          this.userList = data;
+          this.userService.setUser(this.userList);
+        },
+      });
+    }
   }
   editUser(index: number) {
     console.log(index);
