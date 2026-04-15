@@ -10,7 +10,7 @@ import { User } from '../services/user';
 })
 export class UserDetails {
   // userId: string | null = null
-  userData: any = null;
+  userData: any;
   constructor(private user: User) {
     this.loadUserData();
   }
@@ -20,7 +20,7 @@ export class UserDetails {
 
   loadUserData() {
     const id = this.user.userId;
-
+    console.log(id);
     if (id !== null) {
       console.log('User Details', id);
       this.userData = this.user.getUserById(id);

@@ -21,14 +21,16 @@ export class User {
   userIdValue(id: number) {
     this.userId = id;
   }
-  setUser(user: any){
-    this.users = user
+  setUser(user: any) {
+    this.users = user;
   }
   getUserFromAPi() {
     return this.http.get('https://jsonplaceholder.typicode.com/users');
   }
   getUserById(id: number) {
-    console.log('Service', this.users[id]);
-    return this.users.find((user) => user.id === id);
+    console.log('Value', id);
+    if (!this.users) return null;
+    const foundValue = this.users.find((user) => user.id === id);
+    return foundValue;
   }
 }
