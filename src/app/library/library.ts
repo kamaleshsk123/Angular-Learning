@@ -26,14 +26,29 @@ export class Library {
     description: new FormControl('', Validators.required),
   });
   onSubmit() {
-    console.log(this.book.value);
-    this.booksList.push(this.book.value);
-    this.resetData();
-    console.log(this.booksList.length);
+    if (this.book.invalid) return;
+    this.bookService.addBook(this.book.value).subscribe({
+      next: (res: any) => {
+        this.booksList.push(res);
+        this.resetData();
+      },
+      error: (err: any) => {
+        console.error('Error', err);
+      },
+    });
   }
 
   deleteBook(index: number) {
-    this.booksList.splice(index, 1);
+    console.log(index);
+    this.bookService.deleteBook(index).subscribe({
+      next: () => {
+        const id = this.booksList.findIndex((b) => b.id === index);
+        if (id !== -1) {
+          this.booksList.splice(id, 1);
+        }
+      },
+    });
+    // this.booksList.splice(index, 1);
   }
   resetData() {
     this.book.reset();
@@ -50,12 +65,10 @@ export class Library {
   }
 
   updateDetails() {
-    this.showUpdate = false;
-    console.log(this.bookId);
-    if (this.bookId !== null) {
-      this.booksList[this.bookId] = this.book.value;
-    }
     console.log(this.book.value);
+    const updatedBook = this.bookId ?? 0;
+    this.booksList[updatedBook] = this.book.value;
+    this.showUpdate = false;
     this.resetData();
   }
 

@@ -83,7 +83,9 @@
         <td class="p-2">{{ book.description }}</td>
         <td class="p-2">
           <button class="p-2 text-blue-500 cursor-pointer" (click)="editBook(i)">Edit</button>
-          <button class="p-2 text-red-500 cursor-pointer" (click)="deleteBook(i)">Delete</button>
+          <button class="p-2 text-red-500 cursor-pointer" (click)="deleteBook(book.id)">
+            Delete
+          </button>
         </td>
       </tr>
     </tbody>
