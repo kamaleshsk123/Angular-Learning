@@ -7,6 +7,7 @@ import { Registration } from './registration/registration';
 import { UserDashboard } from './user-dashboard/user-dashboard';
 import { EditUser } from './edit-user/edit-user';
 import { TaskManager } from './task-manager/task-manager';
+import { Library } from './library/library';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -16,4 +17,5 @@ export const routes: Routes = [
   { path: 'dashboard', component: UserDashboard },
   { path: 'edit/:id', component: EditUser },
   { path: 'task', component: TaskManager },
+  { path: 'library', component: Library },
 ];
