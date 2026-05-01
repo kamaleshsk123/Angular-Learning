@@ -1,0 +1,57 @@
+<div class="w-1/2 m-3">
+  <h1 class="text-xl font-semibold">Create New Employee</h1>
+  <form action="" [formGroup]="employee" class="w-full">
+    <div class="my-3">
+      <h1>Name:</h1>
+      <input
+        type="text"
+        formControlName="name"
+        placeholder="Employee Name..."
+        class="w-full rounded border p-2"
+      />
+    </div>
+    <div class="my-3">
+      <h1>Email:</h1>
+      <input
+        type="email"
+        placeholder="Employee Email..."
+        formControlName="email"
+        class="w-full rounded border p-2"
+      />
+    </div>
+    <div class="my-3">
+      <h1>Department:</h1>
+      <select
+        name="department"
+        id=""
+        formControlName="department"
+        class="p-2 rounded border w-full"
+      >
+        <option value="it">IT</option>
+        <option value="hr">HR</option>
+      </select>
+    </div>
+    <div class="my-3">
+      <h1>Salary:</h1>
+      <input
+        type="number"
+        formControlName="salary"
+        placeholder="Employee Salary..."
+        class="p-2 border rounded w-full"
+      />
+    </div>
+
+    <div>
+      <button
+        type="submit"
+        (click)="onSubmit()"
+        routerLink="/employee-table"
+        class="cursor-pointer bg-blue-500 px-4 py-2 rounded text-white"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+<router-outlet></router-outlet>

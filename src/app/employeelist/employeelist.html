@@ -1,0 +1,33 @@
+<div class="m-3 w-1/2">
+  <h1 class="text-xl font-semibold">Employee Details Table</h1>
+  <table class="border w-full mt-3">
+    <thead class="bg-gray-200 text-left">
+      <tr>
+        <th class="p-2">Id. No</th>
+        <th class="p-2">Name</th>
+        <th class="p-2">Email</th>
+        <th class="p-2">Department</th>
+        <th class="p-2">Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employee">
+        <td class="p-2">{{ emp.id }}</td>
+        <td class="p-2">{{ emp.name }}</td>
+        <td class="p-2">{{ emp.email }}</td>
+        <td class="p-2">{{ emp.department }}</td>
+        <td class="p-2">{{ emp.salary }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="m-3">
+  <button
+    routerLink="/create-employee"
+    class="px-4 py-2 cursor-pointer rounded bg-blue-500 text-white"
+  >
+    Create New Employee
+  </button>
+</div>
+
+<router-outlet></router-outlet>

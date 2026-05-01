@@ -8,6 +8,8 @@ import { UserDashboard } from './user-dashboard/user-dashboard';
 import { EditUser } from './edit-user/edit-user';
 import { TaskManager } from './task-manager/task-manager';
 import { Library } from './library/library';
+import { Employeeform } from './employeeform/employeeform';
+import { Employeelist } from './employeelist/employeelist';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -18,4 +20,6 @@ export const routes: Routes = [
   { path: 'edit/:id', component: EditUser },
   { path: 'task', component: TaskManager },
   { path: 'library', component: Library },
+  { path: 'create-employee', component: Employeeform },
+  { path: 'employee-table', component: Employeelist },
 ];
