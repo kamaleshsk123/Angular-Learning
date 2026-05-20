@@ -10,6 +10,7 @@ import { TaskManager } from './task-manager/task-manager';
 import { Library } from './library/library';
 import { Employeeform } from './employeeform/employeeform';
 import { Employeelist } from './employeelist/employeelist';
+import { Books } from './books/books';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -19,7 +20,8 @@ export const routes: Routes = [
   { path: 'dashboard', component: UserDashboard },
   { path: 'edit/:id', component: EditUser },
   { path: 'task', component: TaskManager },
-  { path: 'library', component: Library },
+  // { path: 'library', component: Library },
   { path: 'create-employee', component: Employeeform },
   { path: 'employee-table', component: Employeelist },
+  { path: 'library', component: Books },
 ];

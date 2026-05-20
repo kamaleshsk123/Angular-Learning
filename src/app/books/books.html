@@ -1,0 +1,51 @@
+<section class="w-full m-3">
+  <form [formGroup]="books_list" class="w-1/2 space-y-2">
+    <div>
+      <h1>Name:</h1>
+      <input type="text" formControlName="name" class="border rounded w-full mt-2 p-2" />
+    </div>
+    <div>
+      <h1>Description:</h1>
+      <textarea
+        formControlName="description"
+        class="border rounded mt-2 p-2 w-full h-48"
+      ></textarea>
+    </div>
+    <div class="flex space-x-2">
+      <button
+        [disabled]="books_list.invalid"
+        [ngClass]="books_list.invalid ? 'border' : 'bg-sky-400 cursor-pointer text-white'"
+        type="submit"
+        (click)="onSubmit()"
+        class="px-4 py-2 rounded"
+      >
+        Submit
+      </button>
+      <!-- <button class="border rounded px-4 py-2 cursor-pointer" (click)="boreButton()">
+        Bore {{ count }}
+      </button> -->
+    </div>
+  </form>
+  <div *ngIf="details.length > 0" class="space-y-2">
+    <table class="border mt-2 w-1/2">
+      <thead class="border-b text-left bg-gray-100">
+        <tr>
+          <th class="p-2">Name</th>
+          <th class="p-2">Description</th>
+          <th class="p-2">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let book of details; let i = index">
+          <td class="p-2">{{ book.name }}</td>
+          <td class="p-2">{{ book.description }}</td>
+          <td class="p-2 space-x-2">
+            <button class="text-blue-500 cursor-pointer" (click)="onEdit(i)">Edit</button>
+            <button class="text-red-500 cursor-pointer" (click)="onDelete(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
